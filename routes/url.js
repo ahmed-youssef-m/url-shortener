@@ -4,6 +4,8 @@ const { customAlphabet } = require('nanoid');
 const validator = require('validator');
 const { urlModel } = require('../models/Url');
 
+const nanoid = customAlphabet('1234abc', 5);
+
 router.get('/', (req, res) => {
     res.send('hi');
 })
@@ -47,7 +49,8 @@ router.post('/shorten', async (req, res) => {
 
             } else {
 
-                const shortCode = customAlphabet('1234abc', 5);
+                // const shortCode = customAlphabet('1234abc', 5);
+                const shortCode = nanoid();
                 const shortUrl = `${baseUrl}/${shortCode}`;
                 url = new urlModel({ longUrl, shortUrl, shortCode });
 
